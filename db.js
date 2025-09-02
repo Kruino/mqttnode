@@ -3,7 +3,7 @@ const mariadb = require('mariadb');
 
 const pool = mariadb.createPool({
   host: 'localhost',
-  database: 'test_db',
+  database: 'mqtt_project',
   user: 'admin',
   password: 'admin123',
   connectionLimit: 5,
