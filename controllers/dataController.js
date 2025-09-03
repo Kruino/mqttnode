@@ -15,7 +15,7 @@ async function UploadTemp(req, res) {
     }
 
     await conn.query(
-      "INSERT INTO Temperature (locationID, deviceID, temperature, humidity) VALUES (?, ?, ?, ?)",
+      "INSERT INTO temperature (locationID, deviceID, temp, humidity) VALUES (?, ?, ?, ?)",
       [LocationID, Device.id, Temperature, Humidity]
     );
 
@@ -35,7 +35,7 @@ async function GetTempsForLocation(req, res) {
     conn = await pool.getConnection();
 
     var rows = await conn.query(
-      "SELECT * FROM Temperature WHERE locationID = ?",
+      "SELECT * FROM temperature WHERE locationID = ?",
       [LocationID]
     );
 
@@ -63,8 +63,8 @@ async function UploadLight(req, res) {
     }
 
     await conn.query(
-      "INSERT INTO LightLevel (locationID, deviceID, level) VALUES (?, ?, ?)",
-      [LocationID, Device.id, LightLevel]
+      "INSERT INTO light (level, locationID, deviceID) VALUES (?, ?, ?)",
+      [LightLevel, LocationID, Device.id]
     );
 
     res.send({ success: true });

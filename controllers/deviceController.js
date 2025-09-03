@@ -126,7 +126,7 @@ async function UpdateDeviceLocation(req, res) {
 
 
 module.exports = {
-  getDevice,
+
   checkDevice,
   unverifyDevice,
   verifyDevice,
