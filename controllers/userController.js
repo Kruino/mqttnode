@@ -1,6 +1,8 @@
 const pool = require("../db");
 const { createHash } = require("crypto");
 const jwt = require("jsonwebtoken");
+
+//Creates new user.
 exports.registerUser = async (req, res) => {
   const { username, password } = req.body;
   const hash = createHash("sha256", process.env.HASH_STRING).update(password).digest("base64");
@@ -18,6 +20,7 @@ exports.registerUser = async (req, res) => {
   }
 };
 
+//Checks if user exist if it does return token
 exports.loginUser = async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) return res.status(400).send({ error: "Missing fields" });

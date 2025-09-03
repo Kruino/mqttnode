@@ -2,16 +2,7 @@ const pool = require("../db");
 const { createHash } = require("crypto");
 const jwt = require("jsonwebtoken");
 
-async function getDevice(conn, deviceID) {
-  const hash = createHash("sha256", process.env.HASH_STRING).update(deviceID).digest("base64");
-   const rows = await conn.query(
-      "SELECT * FROM devices WHERE deviceID = ?",
-      [hash]
-    );
-
-  return rows[0];
-}
-
+// Checks the device if it has access.
 async function checkDevice(deviceID) {
   let conn;
   try {
@@ -33,6 +24,7 @@ async function checkDevice(deviceID) {
   }
 }
 
+// removes a specific device from having acess to upload to database
 async function unverifyDevice(req, res) {
   let conn;
   try {
@@ -55,6 +47,7 @@ async function unverifyDevice(req, res) {
   }
 }
 
+// Checks if a device has access and returns a token
 async function verifyDevice(req, res) {
   let conn;
   try {
@@ -81,7 +74,7 @@ async function verifyDevice(req, res) {
   }
 }
 
-
+// Adds a devices to the allowed devices table in the database, So it is allowed to upload data to the database
 async function addDevice(req, res) {
   const { DeviceID, LocationID } = req.body;
   if (!DeviceID) return res.status(400).send({ error: "DeviceID missing" });
@@ -103,7 +96,7 @@ async function addDevice(req, res) {
   }
 }
 
-
+//Updates the devices location in the database.
 async function UpdateDeviceLocation(req, res) {
     const { DeviceID, LocationID } = req.body;
   let conn;

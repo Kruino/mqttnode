@@ -1,5 +1,7 @@
 const pool = require("../db");
 
+
+// Asks the database for all locations and returns them.
 exports.getLocations = async (req, res) => {
   
   let conn;
@@ -18,7 +20,7 @@ exports.getLocations = async (req, res) => {
 
 };
 
-
+//Create a new location on the database.
 exports.createLocation = async (req, res) => {
   const { name } = req.body;
 

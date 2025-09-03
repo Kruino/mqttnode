@@ -1,7 +1,7 @@
 const pool = require("../db");
 const deviceController = require("./deviceController")
 
-
+// uploads temperature to the database
 async function UploadTemp(req, res) {
     const { Temperature, Humidity, DeviceID, LocationID } = req.body;
   let conn;
@@ -27,7 +27,7 @@ async function UploadTemp(req, res) {
     if (conn) conn.release();
   }
 }
-
+// returns all temperature for a specific location
 async function GetTempsForLocation(req, res) {
     const LocationID = req.query.LocationID;
   let conn;
@@ -49,7 +49,7 @@ async function GetTempsForLocation(req, res) {
 }
 
 
-
+// uploads Light level to the database
 async function UploadLight(req, res) {
     const { LightLevel, DeviceID, LocationID } = req.body;
   let conn;
