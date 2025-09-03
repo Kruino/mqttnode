@@ -2,11 +2,14 @@
 const mariadb = require('mariadb');
 
 const pool = mariadb.createPool({
-  host: 'localhost',
   database: 'mqtt_project',
-  user: 'admin',
-  password: 'admin123',
+  user: 'api',
+  password: 'api123',
+  host: '127.0.0.1',      // use TCP
+  port: 3306,              // TCP port
+
   connectionLimit: 5,
+
 });
 
 module.exports = pool;
